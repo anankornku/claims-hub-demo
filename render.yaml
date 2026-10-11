@@ -1,0 +1,15 @@
+# Render blueprint. Not applied yet.
+# DATABASE_URL must be the read-only role's connection string (see README, "Deploy").
+# Render does not create roles, so set this value in the Render dashboard.
+services:
+  - type: web
+    name: claims-hub-demo
+    runtime: node
+    plan: free
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: NODE_VERSION
+        value: "22"
